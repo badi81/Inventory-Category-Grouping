@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="inventory_category_report_view_tree" model="ir.ui.view">
+        <field name="name">inventory.category.report.tree</field>
+        <field name="model">inventory.category.report</field>
+        <field name="arch" type="xml">
+            <tree string="Inventory by Category">
+                <field name="location_id"/>
+                <field name="categ_id"/>
+                <field name="product_count"/>
+                <field name="quantity_on_hand"/>
+                <field name="value" sum="Total Value"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="inventory_category_report_view_search" model="ir.ui.view">
+        <field name="name">inventory.category.report.search</field>
+        <field name="model">inventory.category.report</field>
+        <field name="arch" type="xml">
+            <search string="Inventory by Category">
+                <field name="location_id"/>
+                <field name="categ_id"/>
+                <group expand="1" string="Group By">
+                    <filter string="Location" name="group_by_location" context="{'group_by': 'location_id'}"/>
+                    <filter string="Category" name="group_by_category" context="{'group_by': 'categ_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="inventory_category_report_view_pivot" model="ir.ui.view">
+        <field name="name">inventory.category.report.pivot</field>
+        <field name="model">inventory.category.report</field>
+        <field name="arch" type="xml">
+            <pivot string="Inventory by Category">
+                <field name="location_id" type="row"/>
+                <field name="categ_id" type="row"/>
+                <field name="product_count" type="measure"/>
+                <field name="quantity_on_hand" type="measure"/>
+                <field name="value" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="action_inventory_category_report" model="ir.actions.act_window">
+        <field name="name">Inventory by Category</field>
+        <field name="res_model">inventory.category.report</field>
+        <field name="view_mode">tree,pivot</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No data available yet.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_inventory_category_report"
+              name="Inventory by Category"
+              parent="stock.menu_warehouse_report"
+              action="action_inventory_category_report"
+              sequence="20"/>
+</odoo>
