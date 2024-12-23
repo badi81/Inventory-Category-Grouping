@@ -1,5 +1,5 @@
 {
-    'name': 'Inventory Category Grouping',
+    'name': 'iTech-Category-Grouping',
     'version': '17.0.1.0.0',
     'category': 'Inventory',
     'summary': 'Add "Group by Product Category" to the Locations Report in the Inventory module.',
